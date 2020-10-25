@@ -1,0 +1,1 @@
+/bin/x86_64-linux-gnu-g++-9  -g  -rdynamic CMakeFiles/app.dir/main.cpp.o  -o app  -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_thread.so -pthread /usr/local/lib/libboost_system.so /usr/local/lib/libboost_chrono.so /usr/local/lib/libboost_date_time.so /usr/local/lib/libboost_atomic.so -lsqlite3 -pthread 
