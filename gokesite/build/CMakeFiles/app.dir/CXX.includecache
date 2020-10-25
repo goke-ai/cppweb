@@ -16,6 +16,12 @@ boost/property_tree/ptree.hpp
 boost/property_tree/json_parser.hpp
 -
 
+/mnt/d/zs/cppweb/gokesite/contact_controller.h
+headeronly_src/sqlite3pp.h
+/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
+contact.h
+/mnt/d/zs/cppweb/gokesite/contact.h
+
 /mnt/d/zs/cppweb/gokesite/crow_all.h
 stdio.h
 -
@@ -579,8 +585,12 @@ headeronly_src/sqlite3pp.h
 /mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
 json.hpp
 /mnt/d/zs/cppweb/gokesite/json.hpp
+sqlite_adapter.h
+/mnt/d/zs/cppweb/gokesite/sqlite_adapter.h
 contact.h
 /mnt/d/zs/cppweb/gokesite/contact.h
+contact_controller.h
+/mnt/d/zs/cppweb/gokesite/contact_controller.h
 sqlite3.h
 -
 string
@@ -591,4 +601,12 @@ boost/property_tree/ptree.hpp
 -
 boost/property_tree/json_parser.hpp
 -
+
+/mnt/d/zs/cppweb/gokesite/sqlite_adapter.h
+sqlite3.h
+-
+iostream
+-
+headeronly_src/sqlite3pp.h
+/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
 

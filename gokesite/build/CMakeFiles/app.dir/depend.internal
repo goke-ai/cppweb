@@ -3,8 +3,10 @@
 
 CMakeFiles/app.dir/main.cpp.o
  /mnt/d/zs/cppweb/gokesite/contact.h
+ /mnt/d/zs/cppweb/gokesite/contact_controller.h
  /mnt/d/zs/cppweb/gokesite/crow_all.h
  /mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
  /mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.ipp
  /mnt/d/zs/cppweb/gokesite/json.hpp
  /mnt/d/zs/cppweb/gokesite/main.cpp
+ /mnt/d/zs/cppweb/gokesite/sqlite_adapter.h
