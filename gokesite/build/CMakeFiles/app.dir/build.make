@@ -79,11 +79,9 @@ app_EXTERNAL_OBJECTS =
 
 app: CMakeFiles/app.dir/main.cpp.o
 app: CMakeFiles/app.dir/build.make
-app: /usr/local/lib/libboost_thread.so
-app: /usr/local/lib/libboost_system.so
-app: /usr/local/lib/libboost_chrono.so
-app: /usr/local/lib/libboost_date_time.so
-app: /usr/local/lib/libboost_atomic.so
+app: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
+app: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
+app: /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.71.0
 app: CMakeFiles/app.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/zs/cppweb/gokesite/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app.dir/link.txt --verbose=$(VERBOSE)

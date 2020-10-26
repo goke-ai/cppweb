@@ -214,17 +214,21 @@ int main(int argc, char const *argv[])
 
             cout << formdata << endl;
 
+            // json in class Contact
             Contact c{};
             c.fromJson(formdata);
             cout << c.getId() << " " << c.getName() << " " << c.getPhone() << endl;
 
+            // json from nlohmann
             auto j2 = nlohmann::json::parse(req.body);
 
             auto id = j2["id"].get<int>();
             auto name = j2["name"].get<std::string>();
             auto phone = j2["phone"].get<std::string>();
 
+            // display Contact data
             cout << id << " " << name << " " << phone << endl;
+
             sqlite3pp::transaction xct(db);
             {
                 sqlite3pp::command cmd(
@@ -291,6 +295,7 @@ int main(int argc, char const *argv[])
     char *port = getenv("PORT");
     uint16_t iPort = static_cast<uint16_t>(port != NULL ? stoi(port) : 18080);
     cout << "PORT = " << iPort << "\n";
+    cout << "http::/localhost:" << iPort << "\n";
 
     app.port(iPort).multithreaded().run();
 

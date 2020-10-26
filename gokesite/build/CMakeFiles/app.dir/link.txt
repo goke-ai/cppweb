@@ -1,1 +1,1 @@
-/bin/x86_64-linux-gnu-g++-9  -g  -rdynamic CMakeFiles/app.dir/main.cpp.o  -o app  -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_thread.so -pthread /usr/local/lib/libboost_system.so /usr/local/lib/libboost_chrono.so /usr/local/lib/libboost_date_time.so /usr/local/lib/libboost_atomic.so -lsqlite3 -pthread 
+/bin/x86_64-linux-gnu-g++-9  -g  -rdynamic CMakeFiles/app.dir/main.cpp.o  -o app  /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0 /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0 -lsqlite3 -pthread /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.71.0 

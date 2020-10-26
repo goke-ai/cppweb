@@ -4,7 +4,7 @@
 # compile CXX with /bin/x86_64-linux-gnu-g++-9
 CXX_FLAGS = -g   -pthread -std=gnu++11
 
-CXX_DEFINES = 
+CXX_DEFINES = -DBOOST_ALL_NO_LIB -DBOOST_ATOMIC_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DBOOST_THREAD_DYN_LINK
 
 CXX_INCLUDES = 
 
