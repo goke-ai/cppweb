@@ -1,4 +1,4 @@
-#include "../libs/headeronly_src/sqlite3pp.h"
+#include "../include/headeronly_src/sqlite3pp.h"
 #include "../entities/Contact.h"
 
 class ContactController

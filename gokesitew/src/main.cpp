@@ -1,6 +1,6 @@
-#include "libs/crow_all.h"
-#include "libs/headeronly_src/sqlite3pp.h"
-#include "libs/json.hpp"
+#include "include/crow_all.h"
+#include "include/headeronly_src/sqlite3pp.h"
+#include "include/json.hpp"
 
 #include "data/sqlite_adapter.h"
 #include "entities/Contact.h"
