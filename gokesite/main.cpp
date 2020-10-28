@@ -1,10 +1,10 @@
-#include "crow_all.h"
-#include "headeronly_src/sqlite3pp.h"
-#include "json.hpp"
+#include "libs/crow_all.h"
+#include "libs/headeronly_src/sqlite3pp.h"
+#include "libs/json.hpp"
 
-#include "sqlite_adapter.h"
-#include "contact.h"
-#include "contact_controller.h"
+#include "data/sqlite_adapter.h"
+#include "entities/Contact.h"
+#include "controllers/ContactController.h"
 
 #include <sqlite3.h>
 #include <string>

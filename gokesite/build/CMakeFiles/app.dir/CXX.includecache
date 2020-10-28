@@ -6,7 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/zs/cppweb/gokesite/contact.h
+/mnt/d/zs/cppweb/gokesite/controllers/ContactController.h
+../libs/headeronly_src/sqlite3pp.h
+/mnt/d/zs/cppweb/gokesite/libs/headeronly_src/sqlite3pp.h
+../entities/Contact.h
+/mnt/d/zs/cppweb/gokesite/entities/Contact.h
+
+/mnt/d/zs/cppweb/gokesite/data/sqlite_adapter.h
+sqlite3.h
+-
+iostream
+-
+../libs/headeronly_src/sqlite3pp.h
+/mnt/d/zs/cppweb/gokesite/libs/headeronly_src/sqlite3pp.h
+
+/mnt/d/zs/cppweb/gokesite/entities/Contact.h
 string
 -
 iostream
@@ -16,13 +30,7 @@ boost/property_tree/ptree.hpp
 boost/property_tree/json_parser.hpp
 -
 
-/mnt/d/zs/cppweb/gokesite/contact_controller.h
-headeronly_src/sqlite3pp.h
-/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
-contact.h
-/mnt/d/zs/cppweb/gokesite/contact.h
-
-/mnt/d/zs/cppweb/gokesite/crow_all.h
+/mnt/d/zs/cppweb/gokesite/libs/crow_all.h
 stdio.h
 -
 string.h
@@ -230,7 +238,7 @@ type_traits
 thread
 -
 
-/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
+/mnt/d/zs/cppweb/gokesite/libs/headeronly_src/sqlite3pp.h
 functional
 -
 iterator
@@ -246,15 +254,15 @@ sqlite3ext.h
 sqlite3.h
 -
 sqlite3pp.ipp
-/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.ipp
+/mnt/d/zs/cppweb/gokesite/libs/headeronly_src/sqlite3pp.ipp
 
-/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.ipp
+/mnt/d/zs/cppweb/gokesite/libs/headeronly_src/sqlite3pp.ipp
 cstring
 -
 memory
 -
 
-/mnt/d/zs/cppweb/gokesite/json.hpp
+/mnt/d/zs/cppweb/gokesite/libs/json.hpp
 algorithm
 -
 cstddef
@@ -579,18 +587,18 @@ vector
 -
 
 /mnt/d/zs/cppweb/gokesite/main.cpp
-crow_all.h
-/mnt/d/zs/cppweb/gokesite/crow_all.h
-headeronly_src/sqlite3pp.h
-/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
-json.hpp
-/mnt/d/zs/cppweb/gokesite/json.hpp
-sqlite_adapter.h
-/mnt/d/zs/cppweb/gokesite/sqlite_adapter.h
-contact.h
-/mnt/d/zs/cppweb/gokesite/contact.h
-contact_controller.h
-/mnt/d/zs/cppweb/gokesite/contact_controller.h
+libs/crow_all.h
+/mnt/d/zs/cppweb/gokesite/libs/crow_all.h
+libs/headeronly_src/sqlite3pp.h
+/mnt/d/zs/cppweb/gokesite/libs/headeronly_src/sqlite3pp.h
+libs/json.hpp
+/mnt/d/zs/cppweb/gokesite/libs/json.hpp
+data/sqlite_adapter.h
+/mnt/d/zs/cppweb/gokesite/data/sqlite_adapter.h
+entities/Contact.h
+/mnt/d/zs/cppweb/gokesite/entities/Contact.h
+controllers/ContactController.h
+/mnt/d/zs/cppweb/gokesite/controllers/ContactController.h
 sqlite3.h
 -
 string
@@ -605,12 +613,4 @@ unordered_set
 -
 mutex
 -
-
-/mnt/d/zs/cppweb/gokesite/sqlite_adapter.h
-sqlite3.h
--
-iostream
--
-headeronly_src/sqlite3pp.h
-/mnt/d/zs/cppweb/gokesite/headeronly_src/sqlite3pp.h
 

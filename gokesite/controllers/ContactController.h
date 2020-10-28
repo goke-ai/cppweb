@@ -1,5 +1,5 @@
-#include "headeronly_src/sqlite3pp.h"
-#include "contact.h"
+#include "../libs/headeronly_src/sqlite3pp.h"
+#include "../entities/Contact.h"
 
 class ContactController
 {
@@ -13,7 +13,7 @@ public:
     {
         std::vector<Contact> contacts;
         contacts.reserve(10);
-        sqlite3pp::query qry(db, "SELECT id, name, phone FROM contacts");
+        sqlite3pp::query qry(db, "SELECT name, id, phone FROM contacts");
 
         for (auto &&q : qry)
         {

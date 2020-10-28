@@ -1,0 +1,10 @@
+^D:\ZS\CPPWEB\GOKESITEW\BUILD\CMAKEFILES\C9424E70019DA306D6055E0D7B6B587F\GENERATE.STAMP.RULE
+setlocal
+C:\sdk\CMake\bin\cmake.exe -SD:/zs/cppweb/gokesitew -BD:/zs/cppweb/gokesitew/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/zs/cppweb/gokesitew/build/gokesitew.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,9 @@
+D:/zs/cppweb/gokesitew/build/CMakeFiles/NightlyMemoryCheck.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/Experimental.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/Continuous.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/Nightly.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/gokesitew.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/PACKAGE.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/RUN_TESTS.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/ALL_BUILD.dir
+D:/zs/cppweb/gokesitew/build/CMakeFiles/ZERO_CHECK.dir

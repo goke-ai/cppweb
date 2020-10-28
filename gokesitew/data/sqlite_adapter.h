@@ -3,7 +3,7 @@
 
 #include <sqlite3.h>
 #include <iostream>
-#include "headeronly_src/sqlite3pp.h"
+#include "../libs/headeronly_src/sqlite3pp.h"
 
 using namespace std;
 
@@ -11,7 +11,7 @@ int sqlite3ppX()
 {
     try
     {
-        sqlite3pp::database db("../app_data/test.db");
+        sqlite3pp::database db("../../app_data/test.db");
         /* Create SQL statement */
         auto sql = "CREATE TABLE contacts("
                    "ID INT PRIMARY KEY     NOT NULL,"
