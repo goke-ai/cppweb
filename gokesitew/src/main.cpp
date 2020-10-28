@@ -22,14 +22,14 @@ namespace pt = boost::property_tree;
 void getView(response &res, const string &filename, context &x)
 {
     res.set_header("Content-Type", "text/html");
-    auto text = load("../public/" + filename + ".html").render(x);
+    auto text = load("public/" + filename + ".html").render(x);
     res.write(text);
     res.end();
 }
 
 void sendFile(response &res, string filename, string contentType)
 {
-    ifstream in("../../public/" + filename, ifstream::in);
+    ifstream in("public/" + filename, ifstream::in);
     if (in)
     {
         ostringstream contents;
@@ -86,7 +86,7 @@ int main(int argc, char const *argv[])
     // queryCompany();
     // sqlite3ppX();
 
-    sqlite3pp::database db("../../app_data/test.db");
+    sqlite3pp::database db("app_data/test.db");
 
     CROW_ROUTE(app, "/ws")
         .websocket()
