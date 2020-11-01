@@ -53,8 +53,8 @@ public:
         pt::read_json(ss, root);
 
         _id = root.get<int>("id", 0);
-        _name = root.get<std::string>("name", NULL);
-        _phone = root.get<std::string>("phone", NULL);
+        _name = root.get<std::string>("name", nullptr);
+        _phone = root.get<std::string>("phone", nullptr);
     }
 };
 

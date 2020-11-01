@@ -3,7 +3,7 @@
 
 #include <sqlite3.h>
 #include <iostream>
-#include "../libs/headeronly_src/sqlite3pp.h"
+#include "../../include/headeronly_src/sqlite3pp.h"
 
 using namespace std;
 

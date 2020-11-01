@@ -1,11 +1,12 @@
-#include "libs/crow_all.h"
-#include "libs/headeronly_src/sqlite3pp.h"
-#include "libs/json.hpp"
+#include "../include/crow_all.h"
+#include "../include/headeronly_src/sqlite3pp.h"
+#include "../include/json.hpp"
 
 #include "data/sqlite_adapter.h"
 #include "entities/Contact.h"
 #include "controllers/ContactController.h"
 
+#include <memory>
 #include <sqlite3.h>
 #include <string>
 #include <iostream>
@@ -22,14 +23,14 @@ namespace pt = boost::property_tree;
 void getView(response &res, const string &filename, context &x)
 {
     res.set_header("Content-Type", "text/html");
-    auto text = load("../public/" + filename + ".html").render(x);
+    auto text = load("public/" + filename + ".html").render(x);
     res.write(text);
     res.end();
 }
 
 void sendFile(response &res, string filename, string contentType)
 {
-    ifstream in("../public/" + filename, ifstream::in);
+    ifstream in("public/" + filename, ifstream::in);
     if (in)
     {
         ostringstream contents;
@@ -203,79 +204,11 @@ int main(int argc, char const *argv[])
     });
 
     // json endpoint
-    CROW_ROUTE(app, "/api/contacts").methods(HTTPMethod::Get, HTTPMethod::Post, HTTPMethod::Put)([&db](const request &req) {
-        auto method = method_name(req.method);
-        vector<crow::json::rvalue> contacts;
-        contacts.reserve(10);
+    CROW_ROUTE(app, "/api/contacts").methods(HTTPMethod::Get, HTTPMethod::Post, HTTPMethod::Put)
+    ([&db](const request &req) {
 
-        if (req.method == HTTPMethod::POST)
-        {
-            auto formdata = req.body;
-
-            cout << formdata << endl;
-
-            // json in class Contact
-            Contact c{};
-            c.fromJson(formdata);
-            cout << c.getId() << " " << c.getName() << " " << c.getPhone() << endl;
-
-            // json from nlohmann
-            auto j2 = nlohmann::json::parse(req.body);
-
-            auto id = j2["id"].get<int>();
-            auto name = j2["name"].get<std::string>();
-            auto phone = j2["phone"].get<std::string>();
-
-            // display Contact data
-            cout << id << " " << name << " " << phone << endl;
-
-            sqlite3pp::transaction xct(db);
-            {
-                sqlite3pp::command cmd(
-                    db,
-                    "INSERT INTO contacts (id, name, phone) VALUES (:id, :name, :phone);");
-                {
-                    cout << cmd.bind(":id", to_string(id), sqlite3pp::nocopy) << endl;
-                    cout << cmd.bind(":name", name, sqlite3pp::nocopy) << endl;
-                    cout << cmd.bind(":phone", phone, sqlite3pp::nocopy) << endl;
-                    cout << cmd.execute_all() << endl;
-                }
-            }
-            xct.commit();
-
-            auto sql = "SELECT id, name, phone FROM contacts WHERE Id =" + to_string(id);
-            sqlite3pp::query qry(db, sql.c_str());
-
-            for (auto &&q : qry)
-            {
-                int id = 0;
-                std::string name, phone;
-                q.getter() >> id >> name >> phone;
-
-                Contact contact{id, name, phone};
-
-                contacts.push_back(json::load(contact.toJson()));
-            }
-        }
-        else if (req.method == HTTPMethod::PUT)
-        {
-        }
-        else if (req.method == HTTPMethod::DELETE)
-        {
-        }
-        else if (req.method == HTTPMethod::GET)
-        {
-            ContactController ctr{};
-            auto qry = ctr.get(db);
-            for (auto &&q : qry)
-            {
-                contacts.push_back(json::load(q.toJson()));
-            }
-        }
-
-        crow::json::wvalue dto;
-        dto["contacts"] = contacts;
-        return crow::response{dto};
+        auto p = std::make_unique<ContactController>();
+        return p->process(req, db);
     });
 
     // rest client
