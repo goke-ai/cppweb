@@ -9,6 +9,7 @@ using namespace std;
 
 int sqlite3ppX()
 {
+    int rc = 0;
     try
     {
         sqlite3pp::database db("../app_data/test.db");
@@ -18,7 +19,7 @@ int sqlite3ppX()
                    "NAME           TEXT    NOT NULL,"
                    "PHONE            TEXT     NOT NULL );";
 
-        db.execute(sql);
+        rc = db.execute(sql);
 
         sqlite3pp::transaction xct(db);
         {
@@ -32,7 +33,7 @@ int sqlite3ppX()
                 cout << cmd.execute_all() << endl;
             }
         }
-        xct.commit();
+        rc = xct.commit();
 
         cout << "===SELECT================" << endl;
         sqlite3pp::transaction xct1(db, true);
@@ -77,14 +78,14 @@ int sqlite3ppX()
                 cout << id << "\t" << name << "\t" << phone << endl;
             }
         }
-        xct1.commit();
+       rc = xct1.commit();
     }
     catch (std::exception &ex)
     {
         cout << ex.what() << endl;
     }
 
-    return 0;
+    return rc;
 }
 
 static int callback(void *data, int argc, char **argv, char **azColName)

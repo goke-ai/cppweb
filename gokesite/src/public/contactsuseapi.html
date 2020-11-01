@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact CRUD</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <h1>Contact CRUD</h1>
+    <h3>Add</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addContact()">
+      <input type="text" id="add-id" placeholder="Id" />
+      <input type="text" id="add-name" placeholder="New Name" />
+      <input type="text" id="add-phone" placeholder="New Phone" />
+      <input type="submit" value="Add" />
+    </form>
+
+    <hr />
+
+    <div id="editForm">
+      <h3>Edit</h3>
+      <form action="javascript:void(0);" onsubmit="updateContact()">
+        <input type="hidden" id="edit-id" />
+        <input type="text" id="edit-name" />
+        <input type="text" id="edit-phone" />
+        <input type="submit" value="Save" />
+        <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+      </form>
+    </div>
+
+    <hr />
+
+    <p id="counter"></p>
+
+    <hr />
+
+    <div class="content">
+      <table>
+        <tr>
+          <th></th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tbody id="contacts"></tbody>
+      </table>
+    </div>
+
+    <script src="scripts/contact.js"></script>
+    <script type="text/javascript">
+      getContacts();
+    </script>
+  </body>
+</html>

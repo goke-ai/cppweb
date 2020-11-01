@@ -1,5 +1,4 @@
-#if !defined(__CONTACT_H__)
-#define __CONTACT_H__
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -42,7 +41,7 @@ public:
         return os.str();
     }
 
-    void fromJson(std::string jsonString)
+    static Contact fromJson(std::string jsonString)
     {
         std::stringstream ss;
 
@@ -52,10 +51,10 @@ public:
 
         pt::read_json(ss, root);
 
-        _id = root.get<int>("id", 0);
-        _name = root.get<std::string>("name", nullptr);
-        _phone = root.get<std::string>("phone", nullptr);
+        auto id = root.get<int>("id", 0);
+        auto name = root.get<std::string>("name", "");
+        auto phone = root.get<std::string>("phone", "");
+
+        return Contact{id,name, phone};
     }
 };
-
-#endif // __CONTACT_H__

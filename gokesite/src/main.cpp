@@ -20,6 +20,23 @@ using namespace crow;
 using namespace crow::mustache;
 namespace pt = boost::property_tree;
 
+void seedDb(sqlite3pp::database &db)
+{
+    try
+    {
+        std::cout << "seeding... \n";
+
+        int rc = sqlite3ppX();
+        std::cout << rc << std::endl;
+
+        std::cout << "...seeded" << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+}
+
 void getView(response &res, const string &filename, context &x)
 {
     res.set_header("Content-Type", "text/html");
@@ -82,13 +99,28 @@ int main(int argc, char const *argv[])
     crow::SimpleApp app;
     set_base(".");
 
-    // createCompany();
-    // insertCompany();
-    // queryCompany();
-    // sqlite3ppX();
-
     sqlite3pp::database db("../app_data/test.db");
+    seedDb(db);
 
+#pragma region static_file
+
+    CROW_ROUTE(app, "/styles/<string>")
+    ([](const request &req, response &res, string filename) {
+        sendStyle(res, filename);
+    });
+
+    CROW_ROUTE(app, "/scripts/<string>")
+    ([](const request &req, response &res, string filename) {
+        sendScript(res, filename);
+    });
+
+    CROW_ROUTE(app, "/images/<string>")
+    ([](const request &req, response &res, string filename) {
+        sendImage(res, filename);
+    });
+#pragma endregion static_file
+
+#pragma region chat
     CROW_ROUTE(app, "/ws")
         .websocket()
         .onopen([&](crow::websocket::connection &conn) {
@@ -118,22 +150,9 @@ int main(int argc, char const *argv[])
     ([](const request &req, response &res) {
         sendHtml(res, "chat");
     });
+#pragma endregion chat
 
-    CROW_ROUTE(app, "/styles/<string>")
-    ([](const request &req, response &res, string filename) {
-        sendStyle(res, filename);
-    });
-
-    CROW_ROUTE(app, "/scripts/<string>")
-    ([](const request &req, response &res, string filename) {
-        sendScript(res, filename);
-    });
-
-    CROW_ROUTE(app, "/images/<string>")
-    ([](const request &req, response &res, string filename) {
-        sendImage(res, filename);
-    });
-
+#pragma region pages
     CROW_ROUTE(app, "/contact/<string>")
     ([&db](const request &req, response &res, string name) {
         auto sql = "SELECT id, name, phone FROM contacts WHERE name LIKE'" + name + "'";
@@ -188,6 +207,11 @@ int main(int argc, char const *argv[])
         getView(res, "contacts", dto);
     });
 
+    CROW_ROUTE(app, "/contactsuseapi")
+    ([&db](const request &req, response &res) {
+        sendHtml(res, "contactsuseapi");
+    });
+
     CROW_ROUTE(app, "/about")
     ([](const request &req, response &res) {
         sendHtml(res, "about");
@@ -202,13 +226,19 @@ int main(int argc, char const *argv[])
         res.write(os.str());
         res.end();
     });
+#pragma endregion pages
+
+#pragma region api
 
     // json endpoint
-    CROW_ROUTE(app, "/api/contacts").methods(HTTPMethod::Get, HTTPMethod::Post, HTTPMethod::Put)
-    ([&db](const request &req) {
-
+    CROW_ROUTE(app, "/api/contacts").methods(HTTPMethod::Get, HTTPMethod::Post, HTTPMethod::Put)([&db](const request &req) {
         auto p = std::make_unique<ContactController>();
         return p->process(req, db);
+    });
+
+    CROW_ROUTE(app, "/api/contacts/<int>").methods(HTTPMethod::Get, HTTPMethod::Put, HTTPMethod::Delete)([&db](const request &req, int id) {
+        auto p = std::make_unique<ContactController>();
+        return p->process(id, req, db);
     });
 
     // rest client
@@ -218,6 +248,8 @@ int main(int argc, char const *argv[])
         res.write(method + "rest_test");
         res.end();
     });
+
+#pragma endregion api
 
     // default
     CROW_ROUTE(app, "/")
