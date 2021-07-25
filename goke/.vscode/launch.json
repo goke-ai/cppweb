@@ -1,0 +1,65 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cl.exe - Build and debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            // "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "program": "${workspaceRoot}/out_wnd/main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "C/C++: cl.exe build debug"
+        },
+        {
+            "name": "g++ - Build and debug",
+            "type": "cppdbg",
+            "request": "launch",
+            // "program": "${fileDirname}/${fileBasenameNoExtension}", // ${workspaceFolder}/out_lnx/main
+            "program": "${workspaceFolder}/out_lnx/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++ build debug",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "g++ - Build and release",
+            "type": "cppdbg",
+            "request": "launch",
+            // "program": "${fileDirname}/${fileBasenameNoExtension}", // ${workspaceFolder}/out_lnx/main
+            "program": "${workspaceFolder}/out_lnx/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++ build release",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

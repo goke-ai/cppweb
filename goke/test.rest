@@ -1,0 +1,32 @@
+GET http://localhost:18080 HTTP/1.1
+
+###
+
+GET http://localhost:18080/api/contacts HTTP/1.1
+
+###
+
+POST http://localhost:18080/api/contacts  HTTP/1.1
+content-type: application/json
+
+{
+    "id": 0,
+    "name": "sample",
+    "phone": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+
+PUT http://localhost:18080/api/contacts/5  HTTP/1.1
+content-type: application/json
+
+{
+    "id": 5,
+    "name": "Morenike",
+    "phone": "+234"
+}
+
+###
+DELETE http://localhost:18080/api/contacts/6  HTTP/1.1
+
+###

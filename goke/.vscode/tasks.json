@@ -1,0 +1,105 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cl.exe build debug",
+			"command": "cl.exe",
+			"args": [
+				"/std:c++17",
+				"/I",
+				"C:\\sdk\\boost\\boost_1_76_0",
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"/Fe:",
+				"${workspaceFolder}\\out_wnd\\main.exe",
+				"${workspaceFolder}\\*.cpp"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "compiler: cl.exe"
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++ build debug",
+			"command": "/usr/bin/g++",
+			"args": [
+				"${workspaceFolder}/*.cpp",
+				"-std=c++17",
+				"-ggdb",
+				"-lpthread",
+				"-lboost_system",
+				"-DCROW_ENABLE_DEBUG",
+				"-o",
+				"${workspaceFolder}/out_lnx/main"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++ build release",
+			"command": "/usr/bin/g++",
+			"args": [
+				"${workspaceFolder}/*.cpp",
+				"-std=c++17",
+				"-lpthread",
+				"-lboost_system",
+				"-o",
+				"${workspaceFolder}/out_lnx/main"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			// "group": {
+			// 	"kind": "build",
+			// 	"isDefault": true
+			// },
+			"detail": "compiler: /usr/bin/g++"
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++ build ssl",
+			"command": "/usr/bin/g++",
+			"args": [
+				"${workspaceFolder}/*.cpp",
+				"-std=c++17",
+				"-lssl" ,"-lcrypto",
+				"-lpthread",
+				"-lboost_system",
+				"-DCROW_ENABLE_SSL",
+				"-o",
+				"${workspaceFolder}/out_lnx/main"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			// "group": {
+			// 	"kind": "build",
+			// 	"isDefault": true
+			// },
+			"detail": "compiler: /usr/bin/g++"
+		}
+	]
+}
