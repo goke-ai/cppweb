@@ -2,53 +2,17 @@
 
 #include "includes/crow_all.h"
 #include "includes/web.h"
+#include "middlewares/middlewares.h"
 // #include "entities/contact.h"
 #include "apiControllers/contactsApiController.h"
 // #include "data/repository.h"
-// #include "../../goke/src/gokeCPP/hello_wnd_lnx/query/query.h"
+// #include "../../goke/src/gokeCPP/hello_wnd_lnx/goke_core/query.h"
 
 #include <sstream>
 
 // using namespace entities;
 using namespace apiControllers;
 // using namespace repository;
-
-class ExampleLogHandler : public crow::ILogHandler
-{
-public:
-    void log(std::string /*message*/, crow::LogLevel /*level*/) override
-    {
-        //            cerr << "ExampleLogHandler -> " << message;
-    }
-};
-
-struct ExampleMiddleware
-{
-    std::string message;
-
-    ExampleMiddleware() : message("foo")
-    {
-    }
-
-    void setMessage(const std::string &newMsg)
-    {
-        message = newMsg;
-    }
-
-    struct context
-    {
-    };
-
-    void before_handle(crow::request &req, crow::response & /*res*/, context & /*ctx*/)
-    {
-        CROW_LOG_DEBUG << " + MESSAGE: " << message << " - " << req.raw_url;
-    }
-
-    void after_handle(crow::request &req, crow::response & /*res*/, context & /*ctx*/)
-    {
-        CROW_LOG_DEBUG << " - MESSAGE: " << message << " - " << req.raw_url;
-    }
-};
 
 int main()
 {
@@ -57,6 +21,13 @@ int main()
     app.get_middleware<ExampleMiddleware>().setMessage("hello");
 
     crow::mustache::set_base("templates");
+
+    // global objects
+
+    // repository
+    auto repoContact = std::make_unique<ContactRepository>();
+
+    //
 
 #pragma region static_file
 
@@ -92,28 +63,38 @@ int main()
          return getView("about.html");
      });
 
+    CROW_ROUTE(app, "/contacts/")
+    ([&]
+     {
+         //
+         ContactsApiController ctr{repoContact.get()};
+         crow::mustache::context ctx = ctr.getContacts();
+
+         return getView("contacts/index.html", ctx);
+     });
+
 #pragma endregion pages
 
 #pragma region api
-    ContactRepository repoContact;
+
     CROW_ROUTE(app, "/api/contacts")
     ([&]
      {
-         ContactsApiController ctr{repoContact};
+         ContactsApiController ctr{repoContact.get()};
          return ctr.getContacts();
      });
 
     CROW_ROUTE(app, "/api/contacts/<string>")
-    ([&](string searchText)
+    ([&](std::string searchText)
      {
-         ContactsApiController ctr{repoContact};
+         ContactsApiController ctr{repoContact.get()};
          return ctr.getContacts(searchText);
      });
 
     CROW_ROUTE(app, "/api/contacts/<int>")
     ([&](int id)
      {
-         ContactsApiController ctr{repoContact};
+         ContactsApiController ctr{repoContact.get()};
          return ctr.getContact(id);
      });
 
@@ -121,7 +102,7 @@ int main()
         .methods("POST"_method)(
             [&](const crow::request &req)
             {
-                ContactsApiController ctr{repoContact};
+                ContactsApiController ctr{repoContact.get()};
                 return ctr.postContact(req);
             });
 
@@ -129,7 +110,7 @@ int main()
         .methods(crow::HTTPMethod::PUT)(
             [&](const crow::request &req, int id)
             {
-                ContactsApiController ctr{repoContact};
+                ContactsApiController ctr{repoContact.get()};
                 return ctr.putContact(id, req);
             });
 
@@ -137,7 +118,7 @@ int main()
         .methods(crow::HTTPMethod::DELETE)(
             [&](const crow::request &req, int id)
             {
-                ContactsApiController ctr{repoContact};
+                ContactsApiController ctr{repoContact.get()};
                 return ctr.deleteContact(id, req);
             });
 

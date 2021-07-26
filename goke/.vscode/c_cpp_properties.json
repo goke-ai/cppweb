@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:\\sdk\\boost\\boost_1_76_0",
-                "C:\\Users\\gokel\\source\\repos\\goke\\src\\gokeCPP\\hello_wnd_lnx\\query"
+                "C:\\Users\\gokel\\source\\repos\\goke\\src\\gokeCPP\\hello_wnd_lnx\\goke_core"
             ],
             "defines": [
                 "_DEBUG",
@@ -22,7 +22,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/mnt/c/Users/gokel/source/repos/goke/src/gokeCPP/hello_wnd_lnx/query"
+                "/mnt/c/Users/gokel/source/repos/goke/src/gokeCPP/hello_wnd_lnx/goke_core"
 
             ],
             "defines": [],

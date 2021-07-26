@@ -1,6 +1,7 @@
 #include <vector>
+#include "../global.h"
 #include "../entities/contact.h"
-#include "../../../goke/src/gokeCPP/hello_wnd_lnx/query/query.h"
+#include "../../../goke/src/gokeCPP/hello_wnd_lnx/goke_core/query.h"
 
 using namespace entities;
 
@@ -12,10 +13,10 @@ namespace repository
     {
     private:
         /* data */
-        std::vector<Contact> DB = {Contact(1, "Goke", "+234803"),
-                                           Contact(2, "Lillian", "+2348103"),
-                                           Contact(3, "Lolade", "+2348104"),
-                                           Contact(4, "Gbola", "+2348024")};
+        // std::vector<Contact> gDB = {Contact(1, "Goke", "+234803"),
+        //                                    Contact(2, "Lillian", "+2348103"),
+        //                                    Contact(3, "Lolade", "+2348104"),
+        //                                    Contact(4, "Gbola", "+2348024")};
 
     public:
         ContactRepository(/* args */) {}
@@ -23,12 +24,12 @@ namespace repository
 
         std::vector<Contact>& getDB()
         {
-            return DB;
+            return gDB;
         }
 
         Contact getById(int id)
         {
-            Contact c = gq::first(DB, [=](auto a)
+            Contact c = gq::first(gDB, [=](auto a)
                                   { return a.getId() == id; });
 
             return c;
@@ -37,22 +38,22 @@ namespace repository
 
         Contact add(Contact &c)
         {
-            auto m = gq::max(DB, [](auto a, auto b)
+            auto m = gq::max(gDB, [](auto a, auto b)
                              { return b.getId() > a.getId(); });
             c.setId(m.getId() + 1);
-            DB.push_back(c);
+            gDB.push_back(c);
 
             return c;
         }
 
         void update(int id, Contact &c)
         {
-            gq::replace(DB, c, [&](auto a)
+            gq::replace(gDB, c, [&](auto a)
                         { return a.getId() == id; });
         }
         void remove(int id)
         {
-            gq::remove(DB, [&](auto a)
+            gq::remove(gDB, [&](auto a)
                        { return a.getId() == id; });
         }
     };

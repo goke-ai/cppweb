@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacts</title>
+  </head>
+  <body>
+    <h3>Contact</h3>
+    <div>
+      <h4>View context</h4>
+      <ul>
+        {{#contacts}}
+        <li>{{id}}: {{name}} -- ({{phone}})</li>
+        {{/contacts}}
+      </ul>
+    </div>
+    <hr />
+    <div>
+      <h4>View Api</h4>
+      <div id="grid_view">
+        <div id="grid_contacts"></div>
+      </div>
+      <div>
+        <button
+          onclick='addContact({
+          "id": 0,
+          "name": "XXX",
+          "phone": "+6016"
+      })'
+        >
+          ADD
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const uri = "http://localhost:18080/api/contacts";
+
+      let data;
+      // let contact;
+      let ubj = {
+        id: 5,
+        name: "YYY",
+        phone: "+7016",
+      };
+
+      function displayGrid() {
+        const disp = document.getElementById("grid_contacts");
+        disp.innerHTML = "<ul>";
+
+        data.forEach((c) => {
+          disp.innerHTML += `<li> ${c.id}: ${c.name} -- (${c.phone}) 
+              <button onclick='deleteContact(${c.id})'>DELETE</button>
+              <button onclick='updateContact(${c.id}, ${ JSON.stringify(ubj)})'>UPDATE</button>
+            </li>`;
+        });
+
+        disp.innerHTML += "</li>";
+      }
+
+      function addContact(contact) {
+        fetch(uri, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contact),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            getContacts();
+          })
+          .catch((error) => console.error("Unable to add contact.", error));
+      }
+
+      function updateContact(id, contact) {
+        
+        // console.log(par);
+        // const contact = JSON.parse(par);
+        // console.log(contact);
+
+
+        fetch(`${uri}/${id}`, {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contact),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            getContacts();
+          })
+          .catch((error) => console.error("Unable to add contact.", error));
+      }
+
+      function deleteContact(id) {
+        fetch(`${uri}/${id}`, {
+          method: "DELETE",
+        })
+          .then(() => getContacts())
+          .catch((error) => console.error("Unable to delete contact.", error));
+      }
+
+      function getContacts() {
+        fetch(uri)
+          .then((response) => response.json())
+          .then((resp) => {
+            console.log(resp);
+            data = resp.contacts;
+            console.log(data);
+
+            displayGrid();
+          })
+          .catch((error) => console.error("Unable to get contacts.", error));
+      }
+
+      getContacts();
+    </script>
+  </body>
+</html>

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../includes/crow_all.h"
-#include "../../../goke/src/gokeCPP/hello_wnd_lnx/query/query.h"
-#include "../../../goke/src/gokeCPP/hello_wnd_lnx/query/stringex.h"
+#include "../../../goke/src/gokeCPP/hello_wnd_lnx/goke_core/query.h"
+#include "../../../goke/src/gokeCPP/hello_wnd_lnx/goke_core/string.h"
 #include "../entities/contact.h"
 #include "../data/repository.h"
 
@@ -21,9 +21,9 @@ namespace apiControllers
         ContactRepository *_rp;
 
     public:
-        ContactsApiController(ContactRepository &rp)
+        ContactsApiController(ContactRepository *rp)
         {
-            _rp = &rp;
+            _rp = rp;
         }
         ~ContactsApiController() {}
 
