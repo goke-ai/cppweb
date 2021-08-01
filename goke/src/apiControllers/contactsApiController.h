@@ -30,10 +30,11 @@ namespace apiControllers
         crow::json::wvalue getContacts()
         {
             crow::json::wvalue x;
+            auto db = _rp->getDB();
 
-            for (size_t i = 0; i < _rp->getDB().size(); i++)
+            for (size_t i = 0; i < db.size(); i++)
             {
-                auto c{_rp->getDB()[i]};
+                auto c{db[i]};
                 x["contacts"][i] = c.toJson();
             }
 
@@ -43,8 +44,9 @@ namespace apiControllers
         crow::json::wvalue getContacts(std::string searchText)
         {
             crow::json::wvalue x;
+            auto db = _rp->getDB();
 
-            auto y = gq::filter(_rp->getDB(), [&](Contact a)
+            auto y = gq::filter(db, [&](Contact a)
                                 {
                                     auto s1 = gs::tolower(a.getName());
                                     auto s2 = gs::tolower(searchText);
@@ -64,7 +66,8 @@ namespace apiControllers
 
         crow::json::wvalue getContact(int id)
         {
-            auto f = gq::first(_rp->getDB(), [=](auto a)
+            auto db = _rp->getDB();
+            auto f = gq::first(db, [=](auto a)
                                { return a.getId() == id; });
             return f.toJson();
         }

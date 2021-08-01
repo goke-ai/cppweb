@@ -8,6 +8,7 @@ namespace db
    struct SqlData
    {
       const char *msg = "Select Callback function called";
+      std::vector<std::string> columns;
       std::vector<std::vector<std::string>> data;
    };
 
@@ -106,10 +107,10 @@ namespace db
                              "VALUES (1, 'Paul', 32, 'California', 20000.00 ); "
                              "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
                              "VALUES (2, 'Allen', 25, 'Texas', 15000.00 ); "
-                             "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)"
-                             "VALUES (3, 'Teddy', 23, 'Norway', 20000.00 );"
-                             "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)"
-                             "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );")
+                             "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
+                             "VALUES (3, 'Teddy', 23, 'Norway', 20000.00 ); "
+                             "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
+                             "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 ); ")
    {
       sqlite3 *db;
       char *zErrMsg = 0;
@@ -153,23 +154,31 @@ namespace db
       fprintf(stderr, "%s: \n", sqlData->msg);
 
       std::vector<std::string> v;
-      char buffer[150];
 
       for (i = 0; i < argc; i++)
       {
          printf("%s = %s, ", azColName[i], argv[i] ? argv[i] : "NULL");
-         sprintf(buffer, "%s = %s, ", azColName[i], argv[i] ? argv[i] : "NULL");
-         // std::ostringstream ss;
-         // ss << azColName[i] << "=" << (argv[i] ? argv[i] : "NULL");
-         // v.push_back(ss.str());
-         v.push_back(buffer);
+
+         std::ostringstream ss;
+         ss << (argv[i] ? argv[i] : "[NULL]");
+
+         if (std::size(sqlData->columns) <= i)
+         {
+            sqlData->columns.push_back(azColName[i]);
+         }
+         else
+         {
+            sqlData->columns[i] = azColName[i];
+         }
+
+         v.push_back(ss.str());
       }
       sqlData->data.push_back(v);
       printf("\n");
       return 0;
    }
 
-   int selectSql(char *dbName = "test.db",
+   int selectSql(SqlData *sqlData, char *dbName = "test.db",
                  /* Create SQL statement */
                  char *sql = "SELECT * from COMPANY")
    {
@@ -178,7 +187,7 @@ namespace db
       int rc;
       // char *sql;
       // const char *data = "Select Callback function called";
-      SqlData *sqlData = new SqlData();
+      // SqlData *sqlData = new SqlData();
 
       /* Open database */
       rc = sqlite3_open(dbName, &db);
@@ -207,18 +216,23 @@ namespace db
          fprintf(stdout, "Operation done successfully\n");
       }
 
+      for (auto &&v : sqlData->columns)
+      {
+         std::cout << v << '\t';
+      }
+      std::cout << "\n";
+
       for (auto &&v : sqlData->data)
       {
          for (auto &&w : v)
          {
-            printf("%s, ", w);
+            std::cout << w << '\t';
          }
-         printf("\n");
+         std::cout << "\n";
       }
 
-      delete sqlData;
-
       sqlite3_close(db);
+
       return 0;
    }
 

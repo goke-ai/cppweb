@@ -19,6 +19,35 @@ namespace repository
 
         std::vector<Contact> &getDB()
         {
+
+            char *dbname = "goke.db";
+            char *sql = "SELECT * from CONTACTS";
+
+            auto sqlData = std::make_unique<db::SqlData>();
+
+            db::selectSql(sqlData.get(), dbname, sql);
+
+            for (auto &&v : sqlData->columns)
+            {
+                    std::cout << v << ", ";
+            }
+            
+            std::cout << "\n";
+
+            gDB.clear();                
+
+            int id=0;
+            std::string name;
+            std::string phone;
+            for (auto &&v : sqlData->data)
+            {
+                id = std::atoi(v[0].c_str());
+                name = v[1];
+                phone = v[2];
+                auto c = Contact(id, name, phone);
+                gDB.push_back(c);
+            }
+
             return gDB;
         }
 

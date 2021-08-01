@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      href="../../static/assests/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     <title>Contacts</title>
   </head>
   <body>
@@ -16,6 +21,25 @@
         <li>{{id}}: {{name}} -- ({{phone}})</li>
         {{/contacts}}
       </ul>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#contacts}}
+          <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{phone}}</td>
+          </tr>
+          {{/contacts}}
+        </tbody>
+      </table>
     </div>
     <hr />
     <div>
@@ -43,6 +67,7 @@
       </div>
     </div>
 
+    <script src="../../static/assests/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../static/scripts/contact.js"></script>
     <script src="../../static/scripts/index.js"></script>
 

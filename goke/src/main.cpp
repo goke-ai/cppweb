@@ -27,9 +27,46 @@ int main()
     db::connect();
     db::createSql();
     db::insertSql();
-    db::selectSql();
+
+    auto sqlData = std::make_unique<db::SqlData>();
+
+    db::selectSql(sqlData.get());
+    for (auto &&v : sqlData->columns)
+    {
+        std::cout << v << ", ";
+    }
+    std::cout << "\n";
+
+    for (auto &&v : sqlData->data)
+    {
+        for (auto &&w : v)
+        {
+            std::cout << w << ", ";
+        }
+        std::cout << "\n";
+    }
+
     db::updateSql();
     db::deleteSql();
+
+    // migration
+
+    char *dbname = "goke.db";
+    char *sql = "CREATE TABLE CONTACTS("
+                "ID INT PRIMARY KEY     NOT NULL,"
+                "NAME           TEXT    NOT NULL,"
+                "PHONE        CHAR(50));";
+    db::createSql(dbname, sql);
+    // seeding
+    sql = "INSERT INTO CONTACTS (ID, NAME, PHONE) "
+          "VALUES(1, 'Goke', '+234803'); "
+          "INSERT INTO CONTACTS (ID, NAME, PHONE) "
+          "VALUES(2, 'Lillian', '+2348103'); "
+          "INSERT INTO CONTACTS (ID, NAME, PHONE) "
+          "VALUES(3, 'Lolade', '+2348104'); "
+          "INSERT INTO CONTACTS (ID, NAME, PHONE) "
+          "VALUES(4, 'Gbola', '+2348024'); ";
+    db::insertSql(dbname, sql);
 
     // repository
     auto repoContact = std::make_unique<ContactRepository>();
