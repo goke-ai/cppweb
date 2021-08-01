@@ -25,14 +25,7 @@ namespace repository
 
             auto sqlData = std::make_unique<db::SqlData>();
 
-            db::selectSql(sqlData.get(), dbname, sql);
-
-            for (auto &&v : sqlData->columns)
-            {
-                    std::cout << v << ", ";
-            }
-            
-            std::cout << "\n";
+            db::selectSql(sqlData.get(), dbname, sql);            
 
             gDB.clear();                
 
@@ -55,7 +48,7 @@ namespace repository
         {
             Contact c = gq::first(gDB, [=](auto a)
                                   { return a.getId() == id; });
-
+                                  
             return c;
         }
 

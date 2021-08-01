@@ -12,13 +12,13 @@
 
     <title>Contacts</title>
   </head>
-  <body>
+  <body class="container">
     <h3>Contact</h3>
     <div>
       <h4>View context</h4>
-      <ul>
+      <ul class="list-group">
         {{#contacts}}
-        <li>{{id}}: {{name}} -- ({{phone}})</li>
+        <li class="list-group-item">{{id}}: {{name}} -- ({{phone}})</li>
         {{/contacts}}
       </ul>
 
@@ -28,6 +28,7 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +37,12 @@
             <th scope="row">{{id}}</th>
             <td>{{name}}</td>
             <td>{{phone}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" onclick="deleteContact({{id}})">DELETE</button>
+              <button type="button" class="btn btn-primary" 
+              onclick="updateContact({{id}},JSON.stringify({'id':1,'name':'XXX','phone':'+234'}))
+                ">EDIT</button>
+            </td>
           </tr>
           {{/contacts}}
         </tbody>
@@ -48,7 +55,7 @@
         <div id="grid_contacts"></div>
       </div>
       <div>
-        <button
+        <button type="button" class="btn btn-primary"
           onclick='addContact({
           "id": 0,
           "name": "XXX",
