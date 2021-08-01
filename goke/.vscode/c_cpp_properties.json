@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:\\sdk\\boost\\boost_1_76_0",
-                "C:\\Users\\gokel\\source\\repos\\goke\\src\\gokeCPP\\hello_wnd_lnx\\goke_core"
+                "C:\\Users\\gokel\\source\\repos\\goke\\src\\gokeCPP\\hello_wnd_lnx\\goke_core",
+                // "C:\\sdk\\sqlite_amalgamation_3360000"
             ],
             "defines": [
                 "_DEBUG",
@@ -22,7 +23,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/mnt/c/Users/gokel/source/repos/goke/src/gokeCPP/hello_wnd_lnx/goke_core"
+                "/mnt/c/Users/gokel/source/repos/goke/src/gokeCPP/hello_wnd_lnx/goke_core",
+                // "/mnt/c/sdk/sqlite_amalgamation_3360000"
 
             ],
             "defines": [],

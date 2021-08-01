@@ -13,11 +13,11 @@
 				"/EHsc",
 				"/nologo",
 				"/Fe:",
-				"${workspaceFolder}\\out_wnd\\main.exe",
-				"${workspaceFolder}\\*.cpp"
+				"${workspaceFolder}\\build\\debug\\main.exe",
+				"${workspaceFolder}\\src\\*.cpp"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${workspaceFolder}\\src"
 			},
 			"problemMatcher": [
 				"$msCompile"
@@ -30,17 +30,18 @@
 			"label": "C/C++: g++ build debug",
 			"command": "/usr/bin/g++",
 			"args": [
-				"${workspaceFolder}/*.cpp",
+				"${workspaceFolder}/src/*.cpp",
 				"-std=c++17",
 				"-ggdb",
 				"-lpthread",
 				"-lboost_system",
 				"-DCROW_ENABLE_DEBUG",
+				"-lsqlite3",
 				"-o",
-				"${workspaceFolder}/out_lnx/main"
+				"${workspaceFolder}/build/debug/main"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${workspaceFolder}/src"
 			},
 			"problemMatcher": [
 				"$gcc"
@@ -56,15 +57,17 @@
 			"label": "C/C++: g++ build release",
 			"command": "/usr/bin/g++",
 			"args": [
-				"${workspaceFolder}/*.cpp",
+				"${workspaceFolder}/src/*.cpp",
 				"-std=c++17",
 				"-lpthread",
 				"-lboost_system",
+				// "-l",
+				// "sqlite3",
 				"-o",
-				"${workspaceFolder}/out_lnx/main"
+				"${workspaceFolder}/build/release/main"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${workspaceFolder}/src"
 			},
 			"problemMatcher": [
 				"$gcc"
@@ -80,17 +83,19 @@
 			"label": "C/C++: g++ build ssl",
 			"command": "/usr/bin/g++",
 			"args": [
-				"${workspaceFolder}/*.cpp",
+				"${workspaceFolder}/src/*.cpp",
 				"-std=c++17",
 				"-lssl" ,"-lcrypto",
 				"-lpthread",
 				"-lboost_system",
 				"-DCROW_ENABLE_SSL",
+				// "-l",
+				// "sqlite3",
 				"-o",
-				"${workspaceFolder}/out_lnx/main"
+				"${workspaceFolder}/build/release/main"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${workspaceFolder}/src"
 			},
 			"problemMatcher": [
 				"$gcc"
