@@ -25,6 +25,11 @@ int main()
 
     // global objects
     db::connect();
+    db::createSql();
+    db::insertSql();
+    db::selectSql();
+    db::updateSql();
+    db::deleteSql();
 
     // repository
     auto repoContact = std::make_unique<ContactRepository>();
