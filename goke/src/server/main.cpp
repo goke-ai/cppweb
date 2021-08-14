@@ -383,7 +383,7 @@ int main()
     ([](const crow::request &req)
      {
          // enable .html or .htm
-         if (goke::string::ends_with(req.url, ".html") || goke::string::ends_with(req.url, ".htm"))
+         if (goke::string::endsWith(req.url, ".html") || goke::string::endsWith(req.url, ".htm"))
          {
              return getView(req.url);
          }
