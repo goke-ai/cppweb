@@ -1,6 +1,26 @@
 {
+  "name": "goke",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "wp-serve": "webpack-dev-server",
+    "wp-bd": "webpack --mode=development",
+    "wp-br": "webpack --mode=production",
+    "wp-b": "webpack",
+    "ts-w": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "bootstrap": "^5.0.2",
     "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.5",
+    "webpack": "^5.49.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }

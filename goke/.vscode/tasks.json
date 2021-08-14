@@ -7,17 +7,56 @@
 			"command": "cl.exe",
 			"args": [
 				"/std:c++17",
-				"/I",
-				"C:\\sdk\\boost\\boost_1_76_0",
-				"/Zi",
+				// "/W4",
+				"/Zi", // /debug
 				"/EHsc",
-				"/nologo",
-				"/Fe:",
+				// "/nologo",
+				"/D_WIN32_WINNT=0x0601",
+				"/DCROW_ENABLE_DEBUG",
+				// "/D_BOOST_DATE_TIME_DYN_LINK",
+				// "/D_BOOST_ALL_NO_LIB=1",
+				// "/D_BOOST_DATE_TIME_NO_LIB=1",
+				"/I",
+				// "C:\\sdk\\boost\\boost_1_76_0",
+				"C:\\sdk\\vcpkg\\installed\\x86-windows\\include",
+				"${workspaceFolder}\\src\\server\\*.cpp",
+				"${workspaceFolder}\\src\\server\\sqlite3.c",
+				"/Fe:", // /out
 				"${workspaceFolder}\\build\\debug\\main.exe",
-				"${workspaceFolder}\\src\\*.cpp"
+				"/link",
+				// "/LIBPATH:c:\\sdk\\boost\\boost_1_76_0\\stage\\lib"
+				"/LIBPATH:C:\\sdk\\vcpkg\\installed\\x86-windows\\lib"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}\\src"
+				"cwd": "${workspaceFolder}\\src\\server"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "compiler: cl.exe"
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cl.exe build release",
+			"command": "cl.exe",
+			"args": [
+				"/std:c++17",
+				"/W4",
+				"/EHsc",
+				// "/nologo",
+				"/D_WIN32_WINNT=0x0601",
+				"/I",
+				"C:\\sdk\\vcpkg\\installed\\x86-windows\\include",
+				"${workspaceFolder}\\src\\server\\*.cpp",
+				"${workspaceFolder}\\src\\server\\sqlite3.c",
+				"/Fe:", // /out
+				"${workspaceFolder}\\build\\release\\main.exe",
+				"/link",
+				"/LIBPATH:C:\\sdk\\vcpkg\\installed\\x86-windows\\lib"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\src\\server"
 			},
 			"problemMatcher": [
 				"$msCompile"
@@ -30,18 +69,18 @@
 			"label": "C/C++: g++ build debug",
 			"command": "/usr/bin/g++",
 			"args": [
-				"${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/src/server/*.cpp",
 				"-std=c++17",
 				"-ggdb",
+				"-DCROW_ENABLE_DEBUG",
 				"-lpthread",
 				"-lboost_system",
-				"-DCROW_ENABLE_DEBUG",
 				"-lsqlite3",
 				"-o",
 				"${workspaceFolder}/build/debug/main"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}/src"
+				"cwd": "${workspaceFolder}/src/server"
 			},
 			"problemMatcher": [
 				"$gcc"
@@ -57,17 +96,16 @@
 			"label": "C/C++: g++ build release",
 			"command": "/usr/bin/g++",
 			"args": [
-				"${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/src/server/*.cpp",
 				"-std=c++17",
 				"-lpthread",
 				"-lboost_system",
-				// "-l",
-				// "sqlite3",
+				"-lsqlite3",
 				"-o",
 				"${workspaceFolder}/build/release/main"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}/src"
+				"cwd": "${workspaceFolder}/src/server"
 			},
 			"problemMatcher": [
 				"$gcc"
@@ -83,19 +121,19 @@
 			"label": "C/C++: g++ build ssl",
 			"command": "/usr/bin/g++",
 			"args": [
-				"${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/src/server/*.cpp",
 				"-std=c++17",
-				"-lssl" ,"-lcrypto",
+				"-DCROW_ENABLE_SSL",
+				"-lssl",
+				"-lcrypto",
 				"-lpthread",
 				"-lboost_system",
-				"-DCROW_ENABLE_SSL",
-				// "-l",
-				// "sqlite3",
+				"-lsqlite3",
 				"-o",
 				"${workspaceFolder}/build/release/main"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}/src"
+				"cwd": "${workspaceFolder}/src/server"
 			},
 			"problemMatcher": [
 				"$gcc"
