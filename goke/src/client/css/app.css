@@ -10,16 +10,61 @@
 
 html {
   scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 900;
+  line-height: 1;
+}
+
+h1 {
+  font-size: minmax(2rem, 7rem);
+}
+
+h2,
+h3,
+p {
+  margin-bottom: 1em;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+header,
+main,
+section {
+  padding: 4rem 0;
+}
+
+.container {
+  padding: 0 1em;
 }
 
 body {
-  margin: 0;
   /* background-color: #222; */
-  font-family: "Work Sans", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
 }
 
 header {
+  padding: 1.5em 0;
   background-color: var(--background);
   text-align: center;
   position: fixed;
@@ -27,9 +72,9 @@ header {
   width: 100%;
 }
 
-.main {
-  padding: 5em 1em;
-  height: 200vh;
+main {
+  padding: 6em 1em;
+  /* height: 200vh; */
   /*display: grid;
   place-items: center; */
 }
@@ -117,18 +162,19 @@ nav a:hover {
   transition: opacity 250ms ease-in-out 250ms;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 40em) {
   .nav-toggle-label {
     display: none;
   }
 
-  header, .main {
+  header,
+  main {
     display: grid;
     grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
   }
 
-  .app{
-      grid-column: 2/4;
+  .app {
+    grid-column: 2/4;
   }
 
   .logo {
@@ -148,7 +194,8 @@ nav a:hover {
   }
 
   nav li {
-    margin-left: 3em;
+    /* gap: 1em; */
+    margin-left: 1em;
     margin-bottom: 0;
   }
 
