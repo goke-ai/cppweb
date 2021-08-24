@@ -2,6 +2,12 @@
 
 #include "crow_all.h"
 
+void sendRootFile(crow::response &res, std::string &filePath)
+{
+    res.set_static_file_info(filePath);
+    res.end();
+}
+
 void sendFile(crow::response &res, std::string filePath)
 {
     res.set_static_file_info(CROW_STATIC_DIRECTORY + filePath);
@@ -32,10 +38,9 @@ void sendJS(crow::response &res, std::string &filePath)
     sendFile(res, "js/" + filePath);
 }
 
-void sendOffline(crow::response &res, std::string &filePath)
+void sendPWA(crow::response &res, std::string &filePath)
 {
-    res.set_static_file_info("" + filePath);
-    res.end();
+    sendRootFile(res, filePath);
 }
 
 std::string getView(std::string filePath)

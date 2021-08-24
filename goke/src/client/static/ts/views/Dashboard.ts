@@ -7,8 +7,13 @@ export class Dashboard extends AbstractView {
   }
 
   async getHtml() {
-    let x = await fetch('dashboard.html');
-    return x.text();
+    let resp = await fetch('dashboard.html');
+    if (!resp.ok) {
+      throw new Error(`HTTP error! status: ${resp.status}`);
+    }
+    const html = await resp.text();
+
+    return html;
     // .then((response) => {
     //     // When the page is loaded convert it to text
     //     return response.text()

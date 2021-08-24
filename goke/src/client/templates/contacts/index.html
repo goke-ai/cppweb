@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contacts</title>
+  </head>
+  <body class="container">
+    <h3>Contact</h3>
+    <div>
+      <h4>View context</h4>
+      <ul class="list-group">
+        {{#contacts}}
+        <li class="list-group-item">{{id}}: {{name}} -- ({{phone}})</li>
+        {{/contacts}}
+      </ul>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#contacts}}
+          <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{phone}}</td>
+            <td>
+              <button type="button" onclick="deleteContact({{id}})">DELETE</button>
+              <button type="button"  
+              onclick="update({{id}})">EDIT</button>
+            </td>
+          </tr>
+          {{/contacts}}
+        </tbody>
+      </table>
+    </div>
+    <hr />
+    <div>
+      <h4>View Api</h4>
+      <div id="grid_view">
+        <div id="grid_contacts"></div>
+      </div>
+      <div>
+        <button type="button" 
+          onclick='addContact({
+          "id": 0,
+          "name": "XXX",
+          "phone": "+6016"
+      })'
+        >
+          ADD
+        </button>
+      </div>
+      <div>
+        <ul>
+          {{#data}}
+          <li>{{id}}: {{name}} -- ({{phone}})</li>
+          {{/data}}
+        </ul>
+      </div>
+    </div>
+
+    <script src="../js/contact.js"></script>
+    <script src="../js/index.js"></script>
+
+    <script type="text/javascript">
+    function update(id) {
+      console.log(`update ${id}`);
+      var obj = {'id':2,'name':'XXX','phone':'+234'};
+      updateContact(id, obj);
+    }
+      getContacts();
+    </script>
+  </body>
+</html>

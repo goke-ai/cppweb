@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Goke App</title>
+    <meta name="description" content="Goke App a profile" />
+    <meta name="author" content="goke" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="icons/icon-512.png" />
+    <meta name="theme-color" content="#009578" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="images/logo192.png" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <header>
+      <!-- <a href="/"><img src="images/logo512.png" width="100px" alt=""></a> -->
+      <h1 class="logo">Logo</h1>
+      <input
+        type="checkbox"
+        class="nav-toggle"
+        name="nav-toggle"
+        id="nav-toggle"
+      />
+      <nav class="nav">
+        <ul class="nav__link">
+          <li><a href="/" data-link="dashboard">Dashboard</a></li>
+          <li><a href="/posts" data-link="posts">Posts</a></li>
+          <li><a href="/settings" data-link="settings">Settings</a></li>
+          <li><a href="/about" data-link="about">About</a></li>
+          <li><a href="/login" data-link="login">Log In</a></li>
+          <li><a href="/register" data-link="register">Sign Up</a></li>
+        </ul>
+      </nav>
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+    </header>
+    <div class="main">
+      <div id="app" class="app"></div>
+    </div>
+
+    <script src="js/sw_index.js"></script>
+    <script type="module" src="js/bundle.js"></script>
+  </body>
+</html>

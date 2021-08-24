@@ -2,25 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Goke App</title>
+    <meta name="description" content="Goke App a profile" />
+    <meta name="author" content="goke" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="icons/icon-512.png" />
     <meta name="theme-color" content="#009578" />
-    <title>Single Page App</title>
     <link rel="manifest" href="manifest" />
     <link rel="apple-touch-icon" href="images/logo192.png" />
+    <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
-    <nav class="nav">
-      <a href="/" class="nav__link" data-link="">Dashboard</a>
-      <a href="/posts" class="nav__link" data-link="">Posts</a>
-      <a href="/settings" class="nav__link" data-link="">Settings</a>
-    </nav>
+    <header>
+      <nav class="nav">
+        <ul class="nav__link">
+          <li><a href="/" data-link="Dashboard">Dashboard</a></li>
+          <li><a href="/posts" data-link="Posts">Posts</a></li>
+          <li><a href="/settings" data-link="Settings">Settings</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <div id="app"></div>
 
-    <script>
-      navigator.serviceWorker.register("sw");
-    </script>
+    <script src="js/sw_index.js"></script>
     <script type="module" src="js/bundle.js"></script>
   </body>
 </html>

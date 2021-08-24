@@ -76,28 +76,6 @@ int main()
     //
 
 #pragma region static_file
-
-    CROW_ROUTE(app, "/manifest")
-    ([](crow::response &res)
-     {
-         std::string filename{"manifest.json"};
-         sendOffline(res, filename);
-     });
-
-    CROW_ROUTE(app, "/sw_assets")
-    ([](crow::response &res)
-     {
-         std::string filename{"sw_assets.js"};
-         sendOffline(res, filename);
-     });
-
-    CROW_ROUTE(app, "/sw")
-    ([](crow::response &res)
-     {
-         std::string filename{"sw.js"};
-         sendOffline(res, filename);
-     });
-
     CROW_ROUTE(app, "/styles/<string>")
     ([](crow::response &res, std::string filename)
      { sendStyle(res, filename); });
@@ -114,9 +92,89 @@ int main()
     ([](crow::response &res, std::string filename)
      { sendJS(res, filename); });
 
+    CROW_ROUTE(app, "/icons/<string>")
+    ([](crow::response &res, std::string filename)
+     { sendFile(res, "icons/" + filename); });
+
     CROW_ROUTE(app, "/images/<string>")
     ([](crow::response &res, std::string filename)
      { sendImage(res, filename); });
+
+    //
+    CROW_ROUTE(app, "/data/<string>")
+    ([](crow::response &res, std::string filename)
+     { sendFile(res, "data/" + filename); });
+
+    //
+    CROW_ROUTE(app, "/manifest")
+    ([](crow::response &res)
+     {
+         std::string filename{"manifest.json"};
+         sendPWA(res, filename);
+     });
+
+    CROW_ROUTE(app, "/sw_assets")
+    ([](crow::response &res)
+     {
+         std::string filename{"sw_assets.js"};
+         sendPWA(res, filename);
+     });
+
+    CROW_ROUTE(app, "/sw")
+    ([](crow::response &res)
+     {
+         std::string filename{"sw.js"};
+         sendPWA(res, filename);
+     });
+
+    CROW_ROUTE(app, "/vapidPublicKey")
+    ([]()
+     {
+         std::string VAPID_PUBLIC_KEY = "xxsfg";
+         return VAPID_PUBLIC_KEY;
+     });
+
+    CROW_ROUTE(app, "/register")
+        .methods("POST"_method)(
+            [&]()
+            {
+                return crow::response(201);
+            });
+
+    CROW_ROUTE(app, "/sendNotification")
+        .methods("POST"_method)(
+            [&](const crow::request &req)
+            {
+                auto x = crow::json::load(req.body);
+                if (!x)
+                {
+                    crow::json::wvalue w;
+                    w["error"] = 400;
+                    return w;
+                }
+
+                auto subscription = x["subscription"].s();
+                auto payload = x["payload"].s();
+                /*
+
+                const options = {
+                TTL: req.body.ttl
+                };
+
+                setTimeout(function() {
+                    webPush.sendNotification(subscription, payload, options)
+                    .then(function() {
+                        res.sendStatus(201);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                        res.sendStatus(500);
+                    });
+                    }, req.body.delay * 1000);
+                });
+
+                */
+            });
 
 #pragma endregion static_file
 

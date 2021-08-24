@@ -5,9 +5,14 @@
   "background_color": "#6dcdb1",
   "theme_color": "#009578",
   "display": "standalone",
-  "icons":[
+  "icons": [
     {
-      "src": "images/logo512.png",
+      "src": "icons/icon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

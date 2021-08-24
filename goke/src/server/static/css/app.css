@@ -1,3 +1,8 @@
 body {
     margin: 0;
 }
+
+nav li{
+    display: flex;
+    flex-basis: 1;
+}

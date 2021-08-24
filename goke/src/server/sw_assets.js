@@ -1,4 +1,5 @@
 self.assetsManifest = {
+  version: 1,
   assets: [
     { url: "./", hash: "" },
     
