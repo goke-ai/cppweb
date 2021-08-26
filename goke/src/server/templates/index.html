@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 id="title">Hello, world</h1>
-    <br />
-    <h3>{{name}}</h3>
-    <img src="images/pix.jpg" style="width: 50%;" />
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Goke App</title>
+    <meta name="description" content="Goke App a profile" />
+    <meta name="author" content="goke" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="icons/icon-512.png" />
+    <meta name="theme-color" content="#009578" />
+    <link rel="manifest" href="manifest" />
+    <link rel="apple-touch-icon" href="images/logo192.png" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <ul class="nav__link">
+          <li><a href="/" data-link="Dashboard">Dashboard</a></li>
+          <li><a href="/posts" data-link="Posts">Posts</a></li>
+          <li><a href="/settings" data-link="Settings">Settings</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="app"></div>
+
+    <script src="sw_index"></script>
+    <script type="module" src="js/bundle.js"></script>
+  </body>
 </html>

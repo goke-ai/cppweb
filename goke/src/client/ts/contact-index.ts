@@ -32,10 +32,9 @@ function displayGrid(): void {
 }
 
 function addContact(contact: Contact) {
-
-    if (contact === undefined) {
-      contact = ubj;
-    }
+  if (contact === undefined) {
+    contact = ubj;
+  }
 
   fetch(uri, {
     method: "POST",

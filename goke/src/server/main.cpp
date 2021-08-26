@@ -127,6 +127,13 @@ int main()
          sendPWA(res, filename);
      });
 
+    CROW_ROUTE(app, "/sw_index")
+    ([](crow::response &res)
+     {
+         std::string filename{"sw_index.js"};
+         sendPWA(res, filename);
+     });
+
     CROW_ROUTE(app, "/vapidPublicKey")
     ([]()
      {
@@ -184,13 +191,13 @@ int main()
     ([]
      { return getView("dashboard.html"); });
 
-    CROW_ROUTE(app, "/index")
+    CROW_ROUTE(app, "/home")
     ([]
      {
          crow::mustache::context ctx;
          ctx["name"] = "Olagoke Oladokun";
          //  return crow::mustache::load("index.html").render();
-         return getView("index.html", ctx);
+         return getView("home.html", ctx);
      });
 
     CROW_ROUTE(app, "/about")
@@ -457,7 +464,7 @@ int main()
          //  return crow::mustache::load("index.html").render();
          //  return getView("index.html", ctx);
 
-         return getView("app.html");
+         return getView("index.html");
      });
 
 #pragma endregion catch_all
