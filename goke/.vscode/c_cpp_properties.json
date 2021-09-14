@@ -4,9 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                // "C:\\sdk\\boost\\boost_1_76_0",
-                "C:\\sdk\\vcpkg\\installed\\x86-windows\\include",
-                // "C:\\sdk\\sqlite_amalgamation_3360000",
+                "C:\\sdk\\boost_1_77_0",
+                // "C:\\sdk\\vcpkg\\installed\\x86-windows\\include",
+                "C:\\sdk\\sqlite_amalgamation_3360000",
                 "C:\\Users\\gokel\\source\\repos\\goke\\src\\gokeCPP\\hello_wnd_lnx\\goke_core"
             ],
             "defines": [

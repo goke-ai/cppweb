@@ -7,7 +7,7 @@ export class Posts extends AbstractView {
   }
 
   async getHtml() {
-    return `
+    return /*html*/`
       <h1>Posts</h1>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla neque 

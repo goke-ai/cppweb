@@ -17,15 +17,15 @@
 				// "/D_BOOST_ALL_NO_LIB=1",
 				// "/D_BOOST_DATE_TIME_NO_LIB=1",
 				"/I",
-				// "C:\\sdk\\boost\\boost_1_76_0",
-				"C:\\sdk\\vcpkg\\installed\\x86-windows\\include",
+				"C:\\sdk\\boost_1_77_0",
+				// "C:\\sdk\\vcpkg\\installed\\x86-windows\\include",
 				"${workspaceFolder}\\src\\server\\*.cpp",
 				"${workspaceFolder}\\src\\server\\sqlite3.c",
 				"/Fe:", // /out
 				"${workspaceFolder}\\build\\debug\\main.exe",
 				"/link",
-				// "/LIBPATH:c:\\sdk\\boost\\boost_1_76_0\\stage\\lib"
-				"/LIBPATH:C:\\sdk\\vcpkg\\installed\\x86-windows\\lib"
+				"/LIBPATH:c:\\sdk\\boost_1_77_0\\stage\\lib"
+				// "/LIBPATH:C:\\sdk\\vcpkg\\installed\\x86-windows\\lib"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}\\src\\server"
